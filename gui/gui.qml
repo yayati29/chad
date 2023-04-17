@@ -103,11 +103,48 @@ ApplicationWindow {
             }
         }
 
+        Text {
+            id: text_file_name
+            anchors.left: parent.left
+            anchors.leftMargin: left_margin
+            anchors.top: text_field_port.bottom
+            anchors.topMargin: top_margin
+            color: "#ffffff"
+            text: qsTr("Enter file name:")
+            font.pixelSize: 16
+            font.bold: true
+        }
+        TextField {
+            id: text_field_filename
+            anchors.left: parent.left
+            anchors.leftMargin: left_margin
+            anchors.top: text_file_name.bottom
+            anchors.topMargin: top_margin_sub
+            width: text_field_width
+            height: text_field_height
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font.italic: true
+            placeholderText: qsTr("Enter File Name")
+            font.pixelSize: 16
+            
+            Component.onCompleted: {
+                text = pyInterface.fileName_qml
+            }
+
+            background: Rectangle {
+                implicitHeight: text_field_width
+                implicitWidth: text_field_height
+                color: "white"
+                radius: 8
+            }
+        }
+
         Button{
             id: submit_spicy_details
             anchors.left: parent.left
             anchors.leftMargin: left_margin
-            anchors.top: text_field_port.bottom
+            anchors.top: text_field_filename.bottom
             anchors.topMargin: top_margin
             width: button_width
             height: button_height
@@ -121,7 +158,7 @@ ApplicationWindow {
             }
 
             onClicked:{
-                pyInterface.get_spicy_values(text_field_api_key.text, text_field_port.text)
+                pyInterface.get_spicy_values(text_field_api_key.text, text_field_port.text, text_field_filename.text)
             }
             
         }

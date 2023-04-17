@@ -8,6 +8,7 @@ import argparse
 from utils.utils import read_config
 import socket
 
+
 parser = argparse.ArgumentParser()
 
 def client_start(host,port,msg):

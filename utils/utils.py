@@ -3,11 +3,12 @@ import json
 import os
 import re
 
-def create_config(host,port, api,file_name='./config/config.json'):
+def create_config(host,port, api,file_save_name,file_name='./config/config.json'):
     config_dict={
         "host":host,
         "port":port,
-        "api":api
+        "api":api,
+        "filename":file_save_name
     }
     with open(file_name, 'w') as outfile:
         json.dump(config_dict, outfile)
@@ -20,7 +21,7 @@ def read_config(file_name='./config/config.json'):
     
 
 
-def clean_up_generated(generated_code_raw):
+def clean_up_generated(generated_code_raw,fileName):
     with open('./generates/generated_code_raw.json', 'a+') as outfile:
          json.dump(generated_code_raw+"/n/n", outfile)
          
@@ -46,7 +47,7 @@ def clean_up_generated(generated_code_raw):
             json.dump(gen_dict, outfile)
 
 
-    with open("./generates/generated_code.py", "w") as f:
+    with open("./generates/"+fileName, "w") as f:
         f.write(generated_code_striped)
 
     return generated_code_striped
