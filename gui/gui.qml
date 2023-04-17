@@ -152,8 +152,16 @@ ApplicationWindow {
             font.pixelSize: 16
             font.bold: true
 
+            contentItem: Label {
+            text: submit_spicy_details.text
+            font: submit_spicy_details.font
+            color: "white" // Set the text color to white
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            }
+
             background: Rectangle {
-            color: submit_spicy_details.enabled ? "steelblue" : "lightgray"
+            color: submit_spicy_details.enabled ? "#1D5992" : "lightgray"
             radius: 10 // Add this line to create rounded edges
             }
 
