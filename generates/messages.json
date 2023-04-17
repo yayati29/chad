@@ -1,0 +1,18 @@
+[
+    {
+        "role": "system",
+        "content": "you write python scripts for fusion 360."
+    },
+    {
+        "role": "user",
+        "content": "python code without any functions for fusion 360 to generate make a rectrangular plate with a length 20 width of 5 and a height of 10"
+    },
+    {
+        "role": "assistant",
+        "content": "\nimport adsk.core, adsk.fusion, adsk.cam\n\n# Get the active design and root component.\napp = adsk.core.Application.get()\ndesign = adsk.fusion.Design.cast(app.activeProduct)\nrootComp = design.rootComponent\n\n# Create a new sketch on the XY plane.\nsketches = rootComp.sketches\nxyPlane = rootComp.xYConstructionPlane\nsketch = sketches.add(xyPlane)\n\n# Draw a rectangle with the given dimensions.\npoints = adsk.core.Point3D.createArray(4, [\n    adsk.core.Point3D.create(0, 0, 0),\n    adsk.core.Point3D.create(20, 0, 0),\n    adsk.core.Point3D.create(20, 5, 0),\n    adsk.core.Point3D.create(0, 5, 0)\n])\nsketch.sketchCurves.sketchLines.addByTwoPoints(points[0], points[1])\nsketch.sketchCurves.sketchLines.addByTwoPoints(points[1], points[2])\nsketch.sketchCurves.sketchLines.addByTwoPoints(points[2], points[3])\nsketch.sketchCurves.sketchLines.addByTwoPoints(points[3], points[0])\n\n# Extrude the sketch to create a solid block.\nextrudes = rootComp.features.extrudeFeatures\nprofiles = adsk.core.ObjectCollection.create()\nprofiles.add(sketch.profiles.item(0))\nextrudeInput = extrudes.createInput(profiles, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)\nextrudeDistance = adsk.core.ValueInput.createByReal(10)\nextrudeInput.setDistanceExtent(False, extrudeDistance)\nextrudes.add(extrudeInput)\n"
+    },
+    {
+        "role": "user",
+        "content": "Traceback (most recent call last):\n  File \"/Users/yayati/PhD/chad/chad_fusion_script/chad_script_360.py\", line 49, in run\n    exec(open(msg).read())\n  File \"<string>\", line 15, in <module>\nAttributeError: type object 'Point3D' has no attribute 'createArray'\n"
+    }
+]

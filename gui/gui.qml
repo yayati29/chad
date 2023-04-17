@@ -23,7 +23,7 @@ ApplicationWindow {
     //buttons
     property int button_width: 150
     property int button_height: 50
-    
+
 
     Rectangle {
         anchors.fill: parent
@@ -148,8 +148,6 @@ ApplicationWindow {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             }
-
-
             onClicked:{
                 pyInterface.close_server()
             }
@@ -192,6 +190,8 @@ ApplicationWindow {
             font.italic: true
             placeholderText: qsTr("Enter Prompt")
             font.pixelSize: 16
+            wrapMode: TextEdit.Wrap
+
 
             background: Rectangle {
                 implicitHeight: text_field_width
@@ -199,6 +199,8 @@ ApplicationWindow {
                 color: "white"
                 radius: 8
             }
+            text:"make a rectrangular plate with a length 20 width of 5 and a height of 10"
+
         }
 
         Text {
@@ -242,6 +244,8 @@ ApplicationWindow {
                 if (value < 1 || value > 100) {
                 text = ""; }
             }
+
+            text:"2" //remove this line afterwards
         }
         Text {
             id: num_refinement
@@ -284,6 +288,7 @@ ApplicationWindow {
                 if (value < 1 || value > 100) {
                 text = ""; }
             }
+            text:"3" //remove this line afterwards
         }
 
         Text {
@@ -326,6 +331,7 @@ ApplicationWindow {
                 if (value < 1 || value > 4096) {
                 text = ""; }
             }
+            text:"2048" //remove this line afterwards
         }
 
         Text {
@@ -368,6 +374,8 @@ ApplicationWindow {
                 if (value < 0 || value > 2) {
                 text = "1"; }
             }
+
+            text: "1"//remove this
         }
 
         Text {
@@ -410,6 +418,7 @@ ApplicationWindow {
                 if (value < -2 || value > 2) {
                 text = "0"; }
             }
+            text:"0" //remove this line afterwards
         }
 
         Text {
@@ -452,6 +461,7 @@ ApplicationWindow {
                 if (value < -2 || value > 2) {
                 text = "0"; }
             }
+            text:"0" //remove this line afterwards
         }
 
         Button{
@@ -511,7 +521,7 @@ ApplicationWindow {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 30
             color: "black"
-            text: qsTr("Results will appear here")
+            text: pyInterface.text_area_results_text
             font.pixelSize: 16
             font.bold: false
             wrapMode: TextEdit.Wrap
@@ -522,6 +532,7 @@ ApplicationWindow {
                 color: "white"
                 radius: 8
             }
+            
         }
 
     }

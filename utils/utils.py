@@ -1,6 +1,7 @@
 import numpy as np
 import json
 import os
+import re
 
 def create_config(host,port, api,file_name='./config/config.json'):
     config_dict={
@@ -16,4 +17,38 @@ def read_config(file_name='./config/config.json'):
         data = json.load(json_file)
         # print(data)
         return data
+    
+
+
+def clean_up_generated(generated_code_raw):
+    with open('./generates/generated_code_raw.json', 'a+') as outfile:
+         json.dump(generated_code_raw+"/n/n", outfile)
+         
+    generated_code_striped= re.findall(r'```(.*?)```', generated_code_raw, re.DOTALL)
+
+    #check if it is list
+    if isinstance(generated_code_striped, list):
+            print("True")
+            # print(generated_code_striped)
+            generated_code_striped=generated_code_striped[0]
+    else:
+            print("False")
+            generated_code_striped=generated_code_striped
+
+    if generated_code_striped.startswith("python"):
+        generated_code_striped=generated_code_striped.replace("python","")
+
+    gen_dict={
+        "code":generated_code_striped,"raw":generated_code_raw
+    }
+
+    with open('./generates/generated_code.json', 'w') as outfile:
+            json.dump(gen_dict, outfile)
+
+
+    with open("./generates/generated_code.py", "w") as f:
+        f.write(generated_code_striped)
+
+    return generated_code_striped
+
 
