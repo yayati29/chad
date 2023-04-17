@@ -43,7 +43,7 @@ def execute_function_from_file(file_path, function_name):
 
     # Get the function from the module and execute it
     function = getattr(module, function_name)
-    function()
+    function(context)
 
 
 def run(context):
@@ -73,8 +73,12 @@ def run(context):
             # exec(open(msg).read())
 
             function_names = find_function_names(msg)
-            print("\n\n\n\n",function_names,"\n\n\n\n")
-            execute_function_from_file(msg, function_names[0])
+
+            if len(function_names) >0:
+                execute_function_from_file(msg, function_names[0])
+            
+            if len(function_names)==0:
+                exec(open(msg).read())
 
 
 

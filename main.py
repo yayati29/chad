@@ -97,7 +97,7 @@ class PyInterface(QObject):
         lg.debug("Stuff list received")
         lg.debug(f"Stuff list: {stuff_list}")
 
-        self.prompt="python code with function named as run for fusion 360 to generate "+stuff_list[0]
+        self.prompt="python code without any functions for fusion 360 to generate "+stuff_list[0]
         self.num_attempts=int(stuff_list[1])
         self.num_refinements=int(stuff_list[2])
         self.num_token=int(stuff_list[3])
