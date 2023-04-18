@@ -17,11 +17,27 @@ lg.basicConfig(level=lg.DEBUG)
 #set working directory
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+class CodeGenerationThread(QThread):
+    result_signal = pyqtSignal(str,bool)
+
+    def __init__(self, py_interface):
+        QThread.__init__(self)
+        self.py_interface = py_interface
+
+    def run(self):
+        try:
+            self.py_interface.generate_msg_main()
+            self.result_signal.emit("Code generation finished", True)
+        except:
+            self.result_signal.emit("Code generation cancelled", True)
+
+
 class PyInterface(QObject):
     api_changed = pyqtSignal(str)
     port_changed= pyqtSignal(str)
     filename_changed= pyqtSignal(str)
     text_area_results_changed = pyqtSignal(str)
+    generate_button_enabled_changed = pyqtSignal(bool)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -47,16 +63,30 @@ class PyInterface(QObject):
 
         self.generate_location=os.getcwd()+"/generates/"
         print(self.generate_location)
+
+        self.code_generation_thread = CodeGenerationThread(self)
+        # self.code_generation_thread.result_signal.connect(self.update_text_area)
+        self.code_generation_thread.result_signal.connect(lambda text, enabled: self.update_text_area(text, enabled))
         
 
     @pyqtProperty(str, notify=text_area_results_changed)
     def text_area_results_text(self):
         return self._text_area_results_text
     
-    @pyqtSlot(str)
-    def update_text_area(self, text):
+    @pyqtSlot()
+    def enable_generate_button(self):
+        self.generate_button_enabled_changed.emit(True)
+
+    @pyqtSlot()
+    def disable_generate_button(self):
+        self.generate_button_enabled_changed.emit(False)
+    
+    @pyqtSlot(str, bool)
+    def update_text_area(self, text, enable_generate_button=False):
         self._text_area_results_text = text
         self.text_area_results_changed.emit(self._text_area_results_text)
+        if enable_generate_button:
+            self.enable_generate_button()
 
     @pyqtProperty(str, notify=api_changed)
     def api_key_qml(self):
@@ -92,6 +122,12 @@ class PyInterface(QObject):
         except:
             lg.info("Server not running")
 
+    @pyqtSlot()
+    def cancel_code_generation(self):
+        if self.code_generation_thread.isRunning():
+            self.code_generation_thread.terminate()
+            self.update_text_area("Code generation cancelled")
+
     @pyqtSlot(list)
     def get_stuff(self,stuff_list):
         lg.debug("Stuff list received")
@@ -106,8 +142,12 @@ class PyInterface(QObject):
         self.fp=float(stuff_list[6])
         # self.generate_msg()
 
+        # self.text_area_results_changed.emit("Generating code...")
+        # self.generate_msg_main()
         self.text_area_results_changed.emit("Generating code...")
-        self.generate_msg_main()
+        self.disable_generate_button()
+        self.code_generation_thread.start()
+
 
     def generate_msg_main(self):
         model="gpt-3.5-turbo"

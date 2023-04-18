@@ -5,11 +5,11 @@
     },
     {
         "role": "user",
-        "content": "python code named as run for fusion 360 to generate make a rectrangular plate with a length 20 width of 5 and a height of 10"
+        "content": "python code without any functions for fusion 360 to generate make a rectrangular plate with a length 20 width of 5 and a height of 10"
     },
     {
         "role": "assistant",
-        "content": "\nimport adsk.core, adsk.fusion, adsk.cam\n\napp = adsk.core.Application.get()\nui = app.userInterface\ndesign = app.activeProduct\n\n# Create a new sketch.\nsketches = design.rootComponent.sketches\nxyPlane = design.rootComponent.xYConstructionPlane\nsketch = sketches.add(xyPlane)\n\n# Create a rectangle using the dimensions provided.\nlength = 20\nwidth = 5\nheight = 10\nrect = sketch.sketchCurves.sketchRectangles.add(\n    sketch.originPoint.geometry,\n    adsk.core.ValueInput.createByReal(length),\n    adsk.core.ValueInput.createByReal(width)\n)\n\n# Extrude the rectangle to create a 3D model.\nextrudes = design.rootComponent.features.extrudeFeatures\ndistance = adsk.core.ValueInput.createByReal(height)\nextrudeInput = extrudes.createInput(rect, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)\nextrudeInput.setDistanceExtent(False, distance)\next = extrudes.add(extrudeInput)\n"
+        "content": "\nimport adsk.core, adsk.fusion, adsk.cam\n\n# Get the application and root component\napp = adsk.core.Application.get()\nrootComp = adsk.fusion.Design.cast(app.activeProduct).rootComponent\n\n# Create a new sketch on the xy-plane\nsketches = rootComp.sketches\nxyPlane = rootComp.xYConstructionPlane\nsketch = sketches.add(xyPlane)\n\n# Draw a rectangle with the given dimensions\nlength = 20\nwidth = 5\nheight = 10\nrectangle = sketch.sketchCurves.sketchRectangles.add(\n    adsk.core.Point3D.create(0, 0, 0),\n    adsk.core.Point3D.create(length, 0, 0),\n    adsk.core.Point3D.create(length, width, 0),\n    adsk.core.Point3D.create(0, width, 0)\n)\n\n# Extrude the rectangle to the given height\nextrudes = rootComp.features.extrudeFeatures\nextrudeInput = extrudes.createInput(rectangle, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)\nextrudeInput.setDistanceExtent(True, adsk.core.ValueInput.createByReal(height))\nextrudes.add(extrudeInput)\n"
     },
     {
         "role": "user",
@@ -22,11 +22,11 @@
     },
     {
         "role": "user",
-        "content": "python code named as run for fusion 360 to generate make a rectrangular plate with a length 20 width of 5 and a height of 10"
+        "content": "python code without any functions for fusion 360 to generate make a rectrangular plate with a length 20 width of 5 and a height of 10"
     },
     {
         "role": "assistant",
-        "content": "\nimport adsk.core, adsk.fusion, adsk.cam\n\napp = adsk.core.Application.get()\nui = app.userInterface\ndesign = app.activeProduct\n\n# Create a new sketch.\nsketches = design.rootComponent.sketches\nxyPlane = design.rootComponent.xYConstructionPlane\nsketch = sketches.add(xyPlane)\n\n# Create a rectangle using the dimensions provided.\nlength = 20\nwidth = 5\nheight = 10\nrect = sketch.sketchCurves.sketchRectangles.add(\n    sketch.originPoint.geometry,\n    adsk.core.ValueInput.createByReal(length),\n    adsk.core.ValueInput.createByReal(width)\n)\n\n# Extrude the rectangle to create a 3D model.\nextrudes = design.rootComponent.features.extrudeFeatures\ndistance = adsk.core.ValueInput.createByReal(height)\nextrudeInput = extrudes.createInput(rect, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)\nextrudeInput.setDistanceExtent(False, distance)\next = extrudes.add(extrudeInput)\n"
+        "content": "\nimport adsk.core, adsk.fusion, adsk.cam\n\n# Get the application and root component\napp = adsk.core.Application.get()\nrootComp = adsk.fusion.Design.cast(app.activeProduct).rootComponent\n\n# Create a new sketch on the xy-plane\nsketches = rootComp.sketches\nxyPlane = rootComp.xYConstructionPlane\nsketch = sketches.add(xyPlane)\n\n# Draw a rectangle with the given dimensions\nlength = 20\nwidth = 5\nheight = 10\nrectangle = sketch.sketchCurves.sketchRectangles.add(\n    adsk.core.Point3D.create(0, 0, 0),\n    adsk.core.Point3D.create(length, 0, 0),\n    adsk.core.Point3D.create(length, width, 0),\n    adsk.core.Point3D.create(0, width, 0)\n)\n\n# Extrude the rectangle to the given height\nextrudes = rootComp.features.extrudeFeatures\nextrudeInput = extrudes.createInput(rectangle, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)\nextrudeInput.setDistanceExtent(True, adsk.core.ValueInput.createByReal(height))\nextrudes.add(extrudeInput)\n"
     },
     {
         "role": "user",

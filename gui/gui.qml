@@ -20,6 +20,9 @@ ApplicationWindow {
     property int left_margin: 30
     property int top_margin_sub: 10
 
+    property bool generateButtonEnabled: true
+
+
     //buttons
     property int button_width: 150
     property int button_height: 50
@@ -515,9 +518,23 @@ ApplicationWindow {
             anchors.leftMargin: left_margin
             anchors.top: freq_penalty.bottom
             anchors.topMargin: 20
-            anchors.right: field_fp.right
+            // anchors.right: field_fp.right
+            enabled: generateButtonEnabled
 
-            width: 150
+            background: Rectangle {
+            color: button_generate.enabled ? "#1D5992" : "lightgray"
+            radius: 10 // Add this line to create rounded edges
+            }
+
+            contentItem: Label {
+            text: button_generate.text
+            font: button_generate.font
+            color: "white" // Set the text color to white
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            }
+
+            width: 250
             height: 50
             text: qsTr("Generate")
             font.pixelSize: 16
@@ -528,6 +545,43 @@ ApplicationWindow {
                 pyInterface.get_stuff([text_field_prompt.text, field_num_attempts.text,field_num_refinement.text ,field_num_tokens.text, field_temperature.text, field_pp.text, field_fp.text])
 
             }
+            Connections {
+                target: pyInterface
+                onGenerate_button_enabled_changed: generateButtonEnabled = enabled
+            }
+
+            
+        }
+
+        Button{
+            id: button_cancel
+            anchors.left: button_generate.right
+            anchors.leftMargin: 15
+            anchors.top: freq_penalty.bottom
+            anchors.topMargin: 20
+            // anchors.right: field_fp.right
+            // enabled: generateButtonEnabled
+
+            background: Rectangle {
+            color: button_cancel.enabled ? "crimson" : "lightgray"
+            radius: 10 // Add this line to create rounded edges
+            }
+
+            contentItem: Label {
+            text: button_cancel.text
+            font: button_cancel.font
+            color: "white" // Set the text color to white
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            }
+
+            width: 50
+            height: 50
+            text: qsTr("X")
+            font.pixelSize: 16
+            font.bold: true
+
+            onClicked: pyInterface.cancel_code_generation()
             
         }
 
