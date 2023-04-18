@@ -1,31 +1,33 @@
 
-import adsk.core, adsk.fusion, adsk.cam
+import adsk.core, adsk.fusion, traceback
 
-# Get the application and root component
+# Get the application and root component objects
 app = adsk.core.Application.get()
-rootComp = adsk.fusion.Design.cast(app.activeProduct).rootComponent
+des = adsk.fusion.Design.cast(app.activeProduct)
+rootComp = des.rootComponent
 
-# Create a new sketch on the xy-plane
+# Create a new sketch on the xy plane
 sketches = rootComp.sketches
 xyPlane = rootComp.xYConstructionPlane
-sketch = sketches.add(xyPlane)
+plateSketch = sketches.add(xyPlane)
 
-# Draw a rectangle with the given dimensions
-length = 20
-width = 5
-height = 10
-corner1 = adsk.core.Point3D.create(0, 0, 0)
-corner2 = adsk.core.Point3D.create(length, 0, 0)
-corner3 = adsk.core.Point3D.create(length, width, 0)
-corner4 = adsk.core.Point3D.create(0, width, 0)
-line1 = sketch.sketchCurves.sketchLines.addByTwoPoints(corner1, corner2)
-line2 = sketch.sketchCurves.sketchLines.addByTwoPoints(corner2, corner3)
-line3 = sketch.sketchCurves.sketchLines.addByTwoPoints(corner3, corner4)
-line4 = sketch.sketchCurves.sketchLines.addByTwoPoints(corner4, corner1)
+# Draw a rectangle on the sketch
+p0 = adsk.core.Point3D.create(0, 0, 0)
+p1 = adsk.core.Point3D.create(20, 0, 0)
+p2 = adsk.core.Point3D.create(20, 5, 0)
+p3 = adsk.core.Point3D.create(0, 5, 0)
 
-# Extrude the rectangle to the given height
-extrudes = rootComp.features.extrudeFeatures
-profile = sketch.profiles.item(0)
-extrudeInput = extrudes.createInput(profile, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)
-extrudeInput.setDistanceExtent(True, adsk.core.ValueInput.createByReal(height))
-extrudes.add(extrudeInput)
+lines = plateSketch.sketchCurves.sketchLines
+lines.addByTwoPoints(p0, p1)
+lines.addByTwoPoints(p1, p2)
+lines.addByTwoPoints(p2, p3)
+lines.addByTwoPoints(p3, p0)
+
+# Create an extrusion feature based on the sketch
+extFeats = rootComp.features.extrudeFeatures
+bottomFace = plateSketch.profiles.item(0)
+extrudeDistance = adsk.core.ValueInput.createByReal(10)
+extFeature = extFeats.addSimple(bottomFace, extrudeDistance, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)
+
+# Redraw the viewport
+app.activeViewport.refresh()

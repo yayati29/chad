@@ -27,7 +27,7 @@ class CodeGenerationThread(QThread):
     def run(self):
         try:
             self.py_interface.generate_msg_main()
-            self.result_signal.emit("Code generation finished", True)
+            # self.result_signal.emit("Code generation finished", True)
         except:
             self.result_signal.emit("Code generation cancelled", True)
 
@@ -190,6 +190,7 @@ class PyInterface(QObject):
                     msg.append({"role": "user", "content": check})
 
                 if check=="success":
+                    client_start(self.host,self.port,"./generates/create_new_document.py")
                     client_start(self.host,self.port,self.generate_location+self.filename)
 
                     client_stop(self.host,self.port)

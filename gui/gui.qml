@@ -293,7 +293,7 @@ ApplicationWindow {
                 text = ""; }
             }
 
-            text:"2" //remove this line afterwards
+            text:"10" //remove this line afterwards
         }
         Text {
             id: num_refinement
@@ -336,7 +336,7 @@ ApplicationWindow {
                 if (value < 1 || value > 100) {
                 text = ""; }
             }
-            text:"3" //remove this line afterwards
+            text:"5" //remove this line afterwards
         }
 
         Text {
@@ -609,30 +609,99 @@ ApplicationWindow {
             font.bold: true
         }
 
-        TextArea{
-            id: text_area_results
+        // TextArea{
+        //     id: text_area_results
+        //     anchors.left: text_results.left
+        //     anchors.leftMargin: 0
+        //     anchors.top: text_field_prompt.top
+        //     // anchors.topMargin: 20
+        //     anchors.right: parent.right
+        //     anchors.rightMargin: 30
+        //     anchors.bottom: parent.bottom
+        //     anchors.bottomMargin: 30
+        //     color: "black"
+        //     text: pyInterface.text_area_results_text
+        //     font.pixelSize: 16
+        //     font.bold: false
+        //     wrapMode: TextEdit.Wrap
+        //     readOnly: true
+        //     background: Rectangle {
+        //         implicitHeight: text_field_width
+        //         implicitWidth: text_field_height
+        //         color: "white"
+        //         radius: 8
+        //     }
+            
+        // }
+
+        // Flickable {
+        //     id: textAreaFlickable
+        //     anchors.left: text_results.left
+        //     anchors.leftMargin: 0
+        //     anchors.top: text_field_prompt.top
+        //     anchors.right: parent.right
+        //     anchors.rightMargin: 30
+        //     anchors.bottom: parent.bottom
+        //     anchors.bottomMargin: 30
+        //     contentWidth: text_area_results.width
+        //     contentHeight: text_area_results.contentHeight
+        //     clip: true
+
+        //     TextArea {
+        //         id: text_area_results
+        //         width: textAreaFlickable.width
+        //         height: textAreaFlickable.height
+        //         color: "black"
+        //         text: pyInterface.text_area_results_text
+        //         font.pixelSize: 16
+        //         font.bold: false
+        //         wrapMode: TextEdit.Wrap
+        //         readOnly: true
+        //         background: Rectangle {
+        //             implicitHeight: text_field_width
+        //             implicitWidth: text_field_height
+        //             color: "white"
+        //             radius: 8
+        //         }
+        //     }
+        // }
+
+     
+
+        ScrollView {
+            id: scrollView
             anchors.left: text_results.left
             anchors.leftMargin: 0
             anchors.top: text_field_prompt.top
-            // anchors.topMargin: 20
             anchors.right: parent.right
             anchors.rightMargin: 30
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 30
-            color: "black"
-            text: pyInterface.text_area_results_text
-            font.pixelSize: 16
-            font.bold: false
-            wrapMode: TextEdit.Wrap
-            readOnly: true
-            background: Rectangle {
-                implicitHeight: text_field_width
-                implicitWidth: text_field_height
-                color: "white"
-                radius: 8
+            clip: true
+
+            TextArea {
+                id: text_area_results
+                width: scrollView.width
+                height: scrollView.height
+                color: "black"
+                text: pyInterface.text_area_results_text
+                font.pixelSize: 16
+                font.bold: false
+                wrapMode: TextEdit.Wrap
+                readOnly: true
+                background: Rectangle {
+                    implicitHeight: text_field_width
+                    implicitWidth: text_field_height
+                    color: "white"
+                    radius: 8
+                }
             }
-            
         }
+
+
+
+
+
 
     }
 }
