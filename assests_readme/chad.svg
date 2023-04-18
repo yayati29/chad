@@ -26,8 +26,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.63024028"
-     inkscape:cx="261.01156"
-     inkscape:cy="406.98763"
+     inkscape:cx="502.18942"
+     inkscape:cy="340.34638"
      inkscape:window-width="1680"
      inkscape:window-height="997"
      inkscape:window-x="1920"
@@ -83,14 +83,14 @@
     <text
        xml:space="preserve"
        style="font-size:5.64444px;fill:#000000;stroke-width:0.264583"
-       x="174.31209"
-       y="27.124348"
+       x="176.06404"
+       y="29.593214"
        id="text235-1-0-0-9-9"
        transform="rotate(1.670205)"><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.05556px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
-         x="174.31209"
-         y="27.124348"
+         x="176.06404"
+         y="29.593214"
          id="tspan386-6-9-2">Make me a plate of 10X2X1</tspan></text>
     <text
        xml:space="preserve"
@@ -208,7 +208,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect505);display:inline;fill:#000000"><tspan
          x="-138.04297"
          y="881.14525"
-         id="tspan810">`</tspan></text>
+         id="tspan990">`</tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458333)"
@@ -218,25 +218,25 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.45817px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:0.354681"
        x="16.2672"
-       y="170.02863"
+       y="15.499429"
        id="text517"
        transform="scale(0.92484968,1.0812568)"><tspan
          sodipodi:role="line"
          id="tspan515"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.45817px;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.354681;fill:#000000"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.45817px;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:0.354681"
          x="16.2672"
-         y="170.02863">Normal Design Engineer</tspan></text>
+         y="15.499429">Normal Design Engineer</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.6895px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:0.475857"
-       x="168.86797"
-       y="167.7019"
+       x="179.97234"
+       y="16.478046"
        id="text517-8"
        transform="scale(0.90734715,1.102114)"><tspan
          sodipodi:role="line"
          id="tspan515-5"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.6895px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.475857;fill:#000000"
-         x="168.86797"
-         y="167.7019">CHAD Design Engineer</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.6895px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:0.475857"
+         x="179.97234"
+         y="16.478046">CHAD Design Engineer</tspan></text>
   </g>
 </svg>
