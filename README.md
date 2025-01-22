@@ -1,4 +1,4 @@
-# CHAD: Chat CAD
+# CHAD: Chat CAD (Work In Progress)
 ## Overview:
 Application for chat-based CAD currently implemented for Fusion 360. 
 
